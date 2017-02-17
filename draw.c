@@ -8,14 +8,14 @@
 
 
 void drawOctant15(int x0, int y0, int x1, int y1, screen s, color c){
-  int A, B, y, x;
+  int A, B, y, x, d;
   A = y1-y0;
   B = -1*(x1-x0);
   y = y0;
   x = x0;
   d = 2*A+B;
   while (x<=x1){
-    plot(x, y);
+    plot(s, c, x, y);
     if (d > 0){
       y++;
       d+=2*B;
@@ -27,14 +27,14 @@ void drawOctant15(int x0, int y0, int x1, int y1, screen s, color c){
 }
 
 void drawOctant26(int x0, int y0, int x1, int y1, screen s, color c){
-  int A, B, y, x;
+  int A, B, y, x, d;
   A = y1-y0;
   B = -1*(x1-x0);
   y = y0;
   x = x0;
   d = A+2*B;
   while (y<=y1){
-    plot(x, y);
+    plot(s, c, x, y);
     if (d < 0){
       x++;
       d+=A;
@@ -46,14 +46,14 @@ void drawOctant26(int x0, int y0, int x1, int y1, screen s, color c){
 }
 
 void drawOctant37(int x0, int y0, int x1, int y1, screen s, color c){
-  int A, B, y, x;
+  int A, B, y, x, d;
   A = y1-y0;
   B = -1*(x1-x0);
   y = y0;
   x = x0;
   d = A-2*B;
   while (y<=y1){
-    plot(x, y);
+    plot(s, c, x, y);
     if (d > 0){
       x++;
       d+=A;
@@ -66,14 +66,14 @@ void drawOctant37(int x0, int y0, int x1, int y1, screen s, color c){
 
 
 void drawOctant48(int x0, int y0, int x1, int y1, screen s, color c){
-  int A, B, y, x;
+  int A, B, y, x, d;
   A = y1-y0;
   B = -1*(x1-x0);
   y = y0;
   x = x0;
   d = 2*A+B;
   while (x>=x1){
-    plot(x, y);
+    plot(s, c, x, y);
     if (d < 0){
       y--;
       d-=2*B;
@@ -81,7 +81,7 @@ void drawOctant48(int x0, int y0, int x1, int y1, screen s, color c){
     x++;
     d+=2*A;
   }
-  printf("drawn octant 1 or 5");
+  printf("drawn octant 4 or 8");
 }
 
     
@@ -91,8 +91,7 @@ void draw_line(int x0, int y0, int x1, int y1, screen s, color c) {
   int A, B;
   A = y1-y0;
   B = -1*(x1-x0);
-  y = y0;
-  x = x0;
+
   if(A/B>0 && A/B<1){//narrow it to octants 1 or 5
     if (x0>x1)
       drawOctant15(x1,y1,x0,y0,s,c);//if x0 is greater
@@ -117,6 +116,6 @@ void draw_line(int x0, int y0, int x1, int y1, screen s, color c) {
     else
       drawOctant26(x0,y0,x1,y1,s,c);
     
-    printf("Special cases now");    
+  } 
 }
 
